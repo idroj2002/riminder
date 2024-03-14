@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalls del Recordatori</title>
+</head>
+<body>
+    <h1>Detalls del Recordatori</h1>
+    <p>Nota: {{ reminder.note.title }}</p>
+    <p>Data y Hora del Recordatori: {{ reminder.reminder_date }}</p>
+    <p>Descripció: {{ reminder.description }}</p>
+    <p>Completat: {% if reminder.completed %}Si{% else %}No{% endif %}</p>
+</body>
+</html>

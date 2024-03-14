@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Llista de Notes</title>
+</head>
+<body>
+    <h1>Llista de Notes</h1>
+    {% if notes %}
+        <ul>
+            {% for note in notes %}
+                <li>{{ note.title }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hi ha cap nota disponible.</p>
+    {% endif %}
+
+</body>
+</html>

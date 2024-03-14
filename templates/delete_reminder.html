@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Recordatori</title>
+</head>
+<body>
+    <h1>Eliminar Recordatori</h1>
+    <p>¿Estàs segur que vols eliminar aquest recordatori?</p>
+    <form action="{% url 'delete_reminder' reminder.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirmar">
+    </form>
+</body>
+</html>

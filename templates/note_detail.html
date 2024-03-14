@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalls de la Nota</title>
+</head>
+<body>
+    <h1>{{ note.title }}</h1>
+    <p>{{ note.content }}</p>
+    <p>Categories:
+        {% for category in note.categories.all %}
+            {{ category.nombre }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <a href="{% url 'edit_note' note.id %}">Editar</a>
+    <a href="{% url 'delete_note' note.id %}">Eliminar</a>
+</body>
+</html>
