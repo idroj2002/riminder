@@ -1,0 +1,6 @@
+.idea/
+app/__pycache__/
+app/migrations/
+db.sqlite3
+riminder/__pycache__/
+venv/
