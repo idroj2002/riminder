@@ -1,7 +1,7 @@
 from app.models import Note, Category, Reminder
 from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
-from app.forms import NoteForm, ReminderForm
+from app.forms import NoteForm, ReminderForm, CategoryForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
@@ -24,7 +24,7 @@ def create_note(request):
             return redirect('note_list')
     else:
         form = NoteForm()
-    return render(request, 'create_note.html', {'form': form})
+    return render(request, 'create_form.html', {'form': form, 'note_or_cat': 'note'})
 
 
 def edit_note(request, note_id):
@@ -45,6 +45,17 @@ def delete_note(request, note_id):
         note.delete()
         return redirect('note_list')
     return render(request, 'delete_note.html', {'note': note})
+
+
+def create_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('note_list')
+    else:
+        form = CategoryForm()
+    return render(request, 'create_form.html', {'form': form, 'note_or_cat': 'cat'})
 
 
 def reminder_list(request):

@@ -9,7 +9,7 @@
     <p>{{ note.content }}</p>
     <p>Categories:
         {% for category in note.categories.all %}
-            {{ category.nombre }}{% if not forloop.last %}, {% endif %}
+            {{ category.nombre }}{% if not forloop.last %}<p>,</p>{% endif %}
         {% endfor %}
     </p>
     <a href="{% url 'edit_note' note.id %}">Editar</a>
