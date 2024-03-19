@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %} Home {% endblock %}
+
 {% block content %}
 <nav>
     <ul>
@@ -7,6 +9,7 @@
         <li><a href="{% url 'create_note' %}">Crear Nota</a></li>
         <li><a href="{% url 'reminder_list' %}">Els Meus Recordatoris</a></li>
         <li><a href="{% url 'create_reminder' %}">Crear recordatori</a></li>
+
         {% if user.is_authenticated %}
         <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
             {% csrf_token %}
@@ -18,4 +21,55 @@
         {% endif %}
     </ul>
 </nav>
+
+<div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Notes
+          </button>
+        </h5>
+      </div>
+  
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <h1>Llista de Notes</h1>
+            {% if notes %}
+              <div class="container-fluid">
+                <div class="row">
+                    {% for note in notes %}
+                    <div class="col-sm-6 col-md-4">
+                      <div class="card ml-2 mr-3 my-2" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ note.title }}</h5>
+                          <p class="card-text">{{ note.description }}</p>
+                          <a href="#" class="btn btn-primary">Editar</a>
+                        </div>
+                      </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+              </div>
+            {% else %}
+                <p>No hi ha cap nota disponible.</p>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Recordatoris
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+</div>
 {% endblock %}

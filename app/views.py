@@ -89,13 +89,11 @@ def delete_reminder(request, reminder_id):
 
 
 def base(request):
-    return render(request, 'base.html')
+    return home(request)
 
-<<<<<<< HEAD
 def home(request):
-    return render(request, 'home.html')
-=======
->>>>>>> 1e6164b74d3b503ccc2ec8c6386e949e49ac8e47
+    notes = Note.objects.all()
+    return render(request, 'home.html', {'notes': notes})
 
 def signup(request):
     if request.method == 'POST':
