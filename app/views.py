@@ -24,7 +24,7 @@ def create_note(request):
             return redirect('note_list')
     else:
         form = NoteForm()
-    return render(request, 'create_note.html', {'form': form})
+    return render(request, 'create_form.html', {'form': form, 'note_or_cat': 'note'})
 
 
 def edit_note(request, note_id):
@@ -55,7 +55,7 @@ def create_category(request):
             return redirect('note_list')
     else:
         form = CategoryForm()
-    return render(request, 'create_note.html', {'form': form})
+    return render(request, 'create_form.html', {'form': form, 'note_or_cat': 'cat'})
 
 
 def reminder_list(request):
@@ -102,11 +102,10 @@ def delete_reminder(request, reminder_id):
 def base(request):
     return render(request, 'base.html')
 
-<<<<<<< HEAD
+
 def home(request):
     return render(request, 'home.html')
-=======
->>>>>>> 1e6164b74d3b503ccc2ec8c6386e949e49ac8e47
+
 
 def signup(request):
     if request.method == 'POST':

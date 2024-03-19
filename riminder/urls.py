@@ -34,7 +34,7 @@ urlpatterns = [
     path('reminder/<int:reminder_id>/', reminder_detail, name='reminder_detail'),
     path('reminder/create/', create_reminder, name='create_reminder'),
     path('reminder/<int:reminder_id>/edit/', edit_reminder, name='edit_reminder'),
-    path('reminder/<int:reminder_id>/delete/', delete_reminder, name='delete_note'),
+    path('reminder/<int:reminder_id>/delete/', delete_reminder, name='delete_reminder'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
