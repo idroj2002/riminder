@@ -4,13 +4,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from app.forms import NoteForm, ReminderForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+
+
 def note_list(request):
     notes = Note.objects.all()
     return render(request, 'note_list.html', {'notes': notes})
 
+
 def note_detail(request, note_id):
     note = get_object_or_404(Note, pk=note_id)
     return render(request, 'note_detail.html', {'note': note})
+
 
 def create_note(request):
     if request.method == 'POST':
@@ -21,6 +25,7 @@ def create_note(request):
     else:
         form = NoteForm()
     return render(request, 'create_note.html', {'form': form})
+
 
 def edit_note(request, note_id):
     note = get_object_or_404(Note, pk=note_id)
@@ -33,6 +38,7 @@ def edit_note(request, note_id):
         form = NoteForm(instance=note)
     return render(request, 'edit_note.html', {'form': form})
 
+
 def delete_note(request, note_id):
     note = get_object_or_404(Note, pk=note_id)
     if request.method == 'POST':
@@ -40,13 +46,16 @@ def delete_note(request, note_id):
         return redirect('note_list')
     return render(request, 'delete_note.html', {'note': note})
 
+
 def reminder_list(request):
     reminders = Reminder.objects.all()
     return render(request, 'reminder_list.html', {'reminders': reminders})
 
+
 def reminder_detail(request, reminder_id):
     reminder = get_object_or_404(Reminder, pk=reminder_id)
     return render(request, 'reminder_detail.html', {'reminder': reminder})
+
 
 def create_reminder(request):
     if request.method == 'POST':
@@ -57,6 +66,8 @@ def create_reminder(request):
     else:
         form = ReminderForm()
     return render(request, 'create_reminder.html', {'form': form})
+
+
 def edit_reminder(request, reminder_id):
     reminder = get_object_or_404(Reminder, pk=reminder_id)
     if request.method == 'POST':
@@ -68,6 +79,7 @@ def edit_reminder(request, reminder_id):
         form = ReminderForm(instance=reminder)
     return render(request, 'edit_reminder.html', {'form': form})
 
+
 def delete_reminder(request, reminder_id):
     reminder = get_object_or_404(Reminder, pk=reminder_id)
     if request.method == 'POST':
@@ -75,8 +87,10 @@ def delete_reminder(request, reminder_id):
         return redirect('note_list')
     return render(request, 'delete_reminder.html', {'reminder': reminder})
 
+
 def base(request):
     return render(request, 'base.html')
+
 
 def signup(request):
     if request.method == 'POST':
