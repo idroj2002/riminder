@@ -9,6 +9,7 @@
         <ul>
             <li><a href="{% url 'note_list' %}">Les Meves Notes</a></li>
             <li><a href="{% url 'create_note' %}">Crear Nota</a></li>
+            <li><a href="{% url 'create_category' %}">Crear Categoria</a></li>
             <li><a href="{% url 'reminder_list' %}">Els Meus Recordatoris</a></li>
             <li><a href="{% url 'create_reminder' %}">Crear recordatori</a></li>
             {% if user.is_authenticated %}

@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from app.views import note_list, note_detail, create_note, edit_note, delete_note, reminder_list, reminder_detail, create_reminder, edit_reminder, delete_reminder, base, signup
+from app.views import note_list, note_detail, create_note, edit_note, delete_note, create_category, reminder_list, \
+    reminder_detail, create_reminder, edit_reminder, delete_reminder, base, signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('note/create/', create_note, name='create_note'),
     path('note/<int:note_id>/edit/', edit_note, name='edit_note'),
     path('note/<int:note_id>/delete/', delete_note, name='delete_note'),
+    path('category/create/', create_category, name='create_category'),
     path('reminder/', reminder_list, name='reminder_list'),
     path('reminder/<int:reminder_id>/', reminder_detail, name='reminder_detail'),
     path('reminder/create/', create_reminder, name='create_reminder'),
