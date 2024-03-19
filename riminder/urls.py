@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from app.views import note_list, note_detail, create_note, edit_note, delete_note, create_category, reminder_list, \
-    reminder_detail, create_reminder, edit_reminder, delete_reminder, base, signup
+    reminder_detail, create_reminder, edit_reminder, delete_reminder, base, signup, home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', base, name='base'),
+    path('home/', home, name='home'),
     path('note/', note_list, name='note_list'),
     path('note/<int:note_id>/', note_detail, name='note_detail'),
     path('note/create/', create_note, name='create_note'),
