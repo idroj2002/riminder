@@ -5,22 +5,6 @@
     <title>{% block title %}{% endblock %} - Les Meves Notes i Recordatoris</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'note_list' %}">Les Meves Notes</a></li>
-            <li><a href="{% url 'create_note' %}">Crear Nota</a></li>
-            <li><a href="{% url 'reminder_list' %}">Els Meus Recordatoris</a></li>
-            <li><a href="{% url 'create_reminder' %}">Crear recordatori</a></li>
-            {% if user.is_authenticated %}
-            <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
-                {% csrf_token %}
-                <button type="submit">Cerrar sesión</button>
-            </form>
-            {% else %}
-                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
-                <li><a href="{% url 'signup' %}">Registrarse</a></li>
-            {% endif %}
-        </ul>
-    </nav>
     {% block content %}
     {% endblock %}
+</body>

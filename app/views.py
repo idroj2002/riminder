@@ -78,6 +78,9 @@ def delete_reminder(request, reminder_id):
 def base(request):
     return render(request, 'base.html')
 
+def home(request):
+    return render(request, 'home.html')
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
