@@ -21,9 +21,16 @@ class Note(models.Model):
 
 
 class Reminder(models.Model):
+    '''YES = "1"
+    NO = "0"
+    CHOICES = {
+        YES: "Sí",
+        NO: "No"
+    }'''
     title = models.CharField(max_length=200, default="Reminder")
     description = models.TextField()
     reminder_date = models.DateTimeField()
+    #completed = models.IntegerField(choices=CHOICES, default=NO)
 
     def __str__(self):
         return f"Recordatori per {self.title} el {self.reminder_date}"

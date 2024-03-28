@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Llista de Recordatoris</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Llista de Recordatoris{% endblock %}
+
+{% block content %}
     <h1>Llista de Recordatoris</h1>
-    <ul>
+    {% if reminders %}
         {% for reminder in reminders %}
-            <li>{{ reminder.title }} - {{ reminder.description }}</li>
+            <div class="card">
+                <div class="card-body">
+                   <a href="{% url 'reminder_detail' reminder.id %}">{{ reminder.title }} - {{ reminder.description }}</a></li>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    {% else %}
+        <p>No hi ha cap nota recordatori.</p>
+    {% endif %}
+{% endblock %}

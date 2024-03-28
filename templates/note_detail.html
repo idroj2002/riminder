@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalls de la Nota</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Detalls de la Nota{% endblock %}
+
+{% block content %}
     <h1>{{ note.title }}</h1>
     <p>{{ note.content }}</p>
     <p>Categories:
@@ -12,7 +10,6 @@
             {{ category.nombre }}{% if not forloop.last %}<p>,</p>{% endif %}
         {% endfor %}
     </p>
-    <a href="{% url 'edit_note' note.id %}">Editar</a>
-    <a href="{% url 'delete_note' note.id %}">Eliminar</a>
-</body>
-</html>
+    <a class="btn btn-primary" href="{% url 'edit_note' note.id %}">Editar</a>
+    <a class="btn btn-danger" href="{% url 'delete_note' note.id %}">Eliminar</a>
+{% endblock %}

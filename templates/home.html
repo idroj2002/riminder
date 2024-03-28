@@ -28,7 +28,7 @@
     <div class="card">
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Notes
                 </button>
             </h5>
@@ -71,7 +71,7 @@
     <div class="card">
         <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 Recordatoris
                 </button>
             </h5>
@@ -79,50 +79,16 @@
 
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- List of reminders -->
-                        <h1>Llista de Recordatoris</h1>
-                        <ul class="list-unstyled">
-                            {% for reminder in reminders %}
-                                <li>
-                                    {{ reminder.title }} - {{ reminder.date }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Calendar for the reminders -->
-                        <h1>Calendari de Recordatoris</h1>
-                        <div id="reminder-calendar"></div>
-                    </div>
-                </div>
+                <h1>Llista de Recordatoris</h1>
+                <ul class="list-unstyled">
+                    {% for reminder in reminders %}
+                        <li>
+                            {{ reminder.title }} - {{ reminder.date }}
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    // Initialize the calendar
-    document.addEventListener("DOMContentLoaded", function () {
-        var calendarEl = document.getElementById('reminder-calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            timeZone: 'UTC',
-            initialView: 'dayGridMonth',
-            events: [
-                {
-                    title: 'Recordatori #1',
-                    start: '2022-01-01',
-                    end: '2022-01-01'
-                },
-                {
-                    title: 'Recordatori #2',
-                    start: '2022-01-10',
-                    end: '2022-01-10'
-                }
-            ]
-        });
-        calendar.render();
-    });
-</script>
 {% endblock %}
