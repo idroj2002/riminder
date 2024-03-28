@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {% if note_or_cat == 'note' %}
+    {% if type == 'note' %}
         Crear Nota
-    {% else %}
+    {% elif type == 'cate' %}
         Crear Categoria
+    {% else %}
+        Crear Recordatori
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    {% if note_or_cat == 'note' %}
+    {% if type == 'note' %}
         <h1>Crear Nota</h1>
-    {% else %}
+    {% elif type == 'cate' %}
         <h1>Crear Categoria</h1>
+    {% else %}
+        <h1>Crear Recordatori</h1>
     {% endif %}
     <form method="post">
         {% csrf_token %}

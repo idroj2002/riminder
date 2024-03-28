@@ -24,7 +24,7 @@ def create_note(request):
             return redirect('note_list')
     else:
         form = NoteForm()
-    return render(request, 'create_form.html', {'form': form, 'note_or_cat': 'note'})
+    return render(request, 'create_form.html', {'form': form, 'type': 'note'})
 
 
 def edit_note(request, note_id):
@@ -55,7 +55,7 @@ def create_category(request):
             return redirect('note_list')
     else:
         form = CategoryForm()
-    return render(request, 'create_form.html', {'form': form, 'note_or_cat': 'cat'})
+    return render(request, 'create_form.html', {'form': form, 'type': 'cate'})
 
 
 def reminder_list(request):
@@ -76,7 +76,7 @@ def create_reminder(request):
             return redirect('reminder_list')
     else:
         form = ReminderForm()
-    return render(request, 'create_reminder.html', {'form': form})
+    return render(request, 'create_form.html', {'form': form, 'type': 'remi'})
 
 
 def edit_reminder(request, reminder_id):
@@ -85,7 +85,7 @@ def edit_reminder(request, reminder_id):
         form = ReminderForm(request.POST, instance=reminder)
         if form.is_valid():
             form.save()
-            return redirect('note_list')
+            return redirect('reminder_list')
     else:
         form = ReminderForm(instance=reminder)
     return render(request, 'edit_reminder.html', {'form': form})
