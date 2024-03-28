@@ -6,31 +6,79 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        nav {
+            background-color: #e9ecef;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin-right: 1rem;
+        }
+
+        nav a {
+            color: #343a40;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        nav form {
+            margin-left: auto;
+        }
+
+        .content-wrapper {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-wrapper h1 {
+            margin-top: 0;
+            color: #343a40;
+        }
+
+        .content-wrapper p {
+            margin-bottom: 1.5rem;
+            color: #343a40;
+        }
+
+        .logout-form {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'note_list' %}">Les Meves Notes</a></li>
-            <li><a href="{% url 'create_note' %}">Crear Nota</a></li>
-            <li><a href="{% url 'create_category' %}">Crear Categoria</a></li>
-            <li><a href="{% url 'reminder_list' %}">Els Meus Recordatoris</a></li>
-            <li><a href="{% url 'create_reminder' %}">Crear recordatori</a></li>
-            {% if user.is_authenticated %}
-            <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
-                {% csrf_token %}
-                <button type="submit">Cerrar sesión</button>
-            </form>
-            {% else %}
-                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
-                <li><a href="{% url 'signup' %}">Registrarse</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% block navbar %}
+                {% endblock %}
 
-    <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+            </div>
+            <div class="col-12">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 </body>
+</html>
