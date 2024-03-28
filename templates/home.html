@@ -34,7 +34,14 @@
   
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
+          <a type="button" class="btn btn-success" href="{% url 'create_note' %}">Crear nota</a>
             <h1>Llista de Notes</h1>
+            <nav class="nav nav-tabs">
+              <a class="nav-link active" href="#">Totes les cateogires</a>
+              <a class="nav-link" href="#">Categoria 1</a>
+              <a class="nav-link" href="#">Categoria 2</a>
+              <a class="nav-link" href="#">Categoria sense elements</a>
+            </nav>
             {% if notes %}
               <div class="container-fluid">
                 <div class="row">
@@ -44,7 +51,7 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ note.title }}</h5>
                           <p class="card-text">{{ note.description }}</p>
-                          <a href="#" class="btn btn-primary">Editar</a>
+                          <a href="{% url 'note_detail' note.id %}" class="btn btn-primary">Editar</a>
                         </div>
                       </div>
                       </div>
