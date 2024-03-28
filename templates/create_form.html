@@ -1,19 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Nota</title>
-</head>
-<body>
-    {% if note_or_cat == 'note' %}
-        <h1>Crear Nota</h1>
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if type == 'note' %}
+        Crear Nota
+    {% elif type == 'cate' %}
+        Crear Categoria
     {% else %}
+        Crear Recordatori
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if type == 'note' %}
+        <h1>Crear Nota</h1>
+    {% elif type == 'cate' %}
         <h1>Crear Categoria</h1>
+    {% else %}
+        <h1>Crear Recordatori</h1>
     {% endif %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button class="btn btn-success" type="submit">Guardar</button>
     </form>
-</body>
-</html>
+{% endblock %}
+
+

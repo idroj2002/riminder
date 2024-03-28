@@ -17,4 +17,4 @@ class CategoryForm(forms.ModelForm):
 class ReminderForm(forms.ModelForm):
     class Meta:
         model = Reminder
-        fields = ['title', 'description', 'reminder_date']
+        fields = ['title', 'description', 'reminder_date', 'completed']

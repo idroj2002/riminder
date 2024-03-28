@@ -1,16 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Llista de Recordatoris</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Llista de Recordatoris{% endblock %}
+
+{% block content %}
     <h1>Llista de Recordatoris</h1>
-    <ul>
-        {% for reminder in reminders %}
-            <li>{{ reminder.title }} - {{ reminder.description }}</li>
+
+    <h2>Pendents</h2>
+    {% if lt_now_reminders %}
+        {% for reminder in lt_now_reminders %}
+            <div class="card">
+                <div class="card-body">
+                   <a href="{% url 'reminder_detail' reminder.id %}">{{ reminder.title }} - {{ reminder.reminder_date }}</a></li>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    {% else %}
+        <p>No hi ha cap recordatori pendent.</p>
+    {% endif %}
+
+    <h2>Propers</h2>
+    {% if gt_now_reminders %}
+        {% for reminder in gt_now_reminders %}
+        <div class="card">
+            <div class="card-body">
+               <a href="{% url 'reminder_detail' reminder.id %}">{{ reminder.title }} - {{ reminder.reminder_date }}</a></li>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No hi ha cap recordatori proper.</p>
+    {% endif %}
+
+    <h2>Completats</h2>
+    {% if completed_reminders %}
+        {% for reminder in completed_reminders %}
+        <div class="card">
+            <div class="card-body">
+               <a href="{% url 'reminder_detail' reminder.id %}">{{ reminder.title }} - {{ reminder.reminder_date }}</a></li>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No hi ha cap recordatori completat.</p>
+    {% endif %}
+{% endblock %}

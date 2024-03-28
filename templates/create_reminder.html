@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Recordatori</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Crear Recordatori{% endblock %}
+
+{% block content %}
     <h1>Crear Recordatori</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button class="btn btn-success" type="submit">Guardar</button>
     </form>
-</body>
-</html>
+{% endblock %}

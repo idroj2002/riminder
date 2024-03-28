@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Recordatori</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Editar Recordatori{% endblock %}
+
+{% block content %}
     <h1>Editar Recordatori</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar Canvis</button>
+        <button class="btn btn-success" type="submit">Guardar Canvis</button>
     </form>
-</body>
-</html>
+{% endblock %}

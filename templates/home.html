@@ -3,18 +3,18 @@
 {% block title %} Home {% endblock %}
 {% block styles %} <link rel="stylesheet" href="../static/styles.css"> {% endblock %}
 
-{% block content %}
+{% block navbar %}
 <nav>
     <ul>
         <li><a href="{% url 'note_list' %}">Les Meves Notes</a></li>
         <li><a href="{% url 'create_note' %}">Crear Nota</a></li>
+        <li><a href="{% url 'create_category' %}">Crear Categoria</a></li>
         <li><a href="{% url 'reminder_list' %}">Els Meus Recordatoris</a></li>
         <li><a href="{% url 'create_reminder' %}">Crear recordatori</a></li>
-
         {% if user.is_authenticated %}
         <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
             {% csrf_token %}
-            <button type="submit">Cerrar sesión</button>
+            <button type="submit" class="btn btn-link text-dark p-0">Cerrar sesión</button>
         </form>
         {% else %}
             <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
@@ -22,7 +22,9 @@
         {% endif %}
     </ul>
 </nav>
+{% endblock %}
 
+{% block content %}
 <div class="accordion" id="accordionExample">
     <div class="card">
       <div class="card-header" id="headingOne">
@@ -37,12 +39,6 @@
         <div class="card-body">
           <a type="button" class="btn btn-success" href="{% url 'create_note' %}">Crear nota</a>
             <h1>Llista de Notes</h1>
-            <nav class="nav nav-tabs">
-              <a class="nav-link active" id="main-category-button" href="#">Totes les cateogires</a>
-              {% for category in categories %}
-                <a class="nav-link category-button" href="#">{{ category.name }}</a>
-              {% endfor %}
-            </nav>
             {% if notes %}
               <div class="container-fluid">
                 <div class="row">
@@ -52,7 +48,7 @@
                               <div class="card-body">
                                 <h5 class="card-title">{{ note.title }}</h5>
                                 
-                                <p class="card-subtitle">{% for categ in note.categories.all %}<span class="badge badge-primary mr-1">{{ categ }}</span>{% endfor %}</p>
+                                <p class="card-subtitle mb-2 text-muted">{% for categ in note.categories.all %}<span class="badge badge-primary mr-1">{{ categ }}</span>{% endfor %}</p>
                                 <p class="card-text">{{ note.description }}</p>
                                 <a href="{% url 'note_detail' note.id %}" class="btn btn-primary">Editar</a>
                               </div>
@@ -68,18 +64,41 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Recordatoris
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Recordatoris
+                </button>
+            </h5>
         </div>
-      </div>
+
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <h1>Llista de Recordatoris</h1>
+                {% if reminders %}
+                  <div class="container-fluid">
+                    <div class="row">
+                        {% for reminder in reminders %}
+                              <div class="col-sm-6 col-md-4 note-card">
+                                <div class="card ml-2 mr-3 my-2" style="width: 18rem;">
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{ reminder.title }}</h5>
+                                    <p class="card-subtitle mb-2 text-muted">{{ reminder.reminder_date }}</p>
+                                    
+                                    <p class="card-subtitle">{% for categ in reminder.categories.all %}<span class="badge badge-primary mr-1">{{ categ }}</span>{% endfor %}</p>
+                                    <p class="card-text">{{ reminder.description }}</p>
+                                    <a href="{% url 'reminder_detail' reminder.id %}" class="btn btn-primary">Editar</a>
+                                  </div>
+                                </div>
+                              </div>
+                        {% endfor %}
+                      </div>
+                  </div>
+                {% else %}
+                    <p>No hi ha cap recordatori disponible.</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

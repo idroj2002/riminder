@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Llista de Notes</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Llista de Notes{% endblock %}
+
+{% block content %}
     <h1>Llista de Notes</h1>
     {% if notes %}
-        <ul>
-            {% for note in notes %}
-                <li><a href="{% url 'note_detail' note.id %}">{{ note.title }}</a></li>
-            {% endfor %}
-        </ul>
+        {% for note in notes %}
+            <div class="card">
+                <div class="card-body">
+                   <a href="{% url 'note_detail' note.id %}">{{ note.title }}</a></li>
+                </div>
+            </div>
+        {% endfor %}
     {% else %}
         <p>No hi ha cap nota disponible.</p>
     {% endif %}
-
-</body>
-</html>
+{% endblock %}
