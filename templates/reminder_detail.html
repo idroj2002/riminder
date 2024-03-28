@@ -3,10 +3,10 @@
 {% block title %}Detalls del Recordatori{% endblock %}
 
 {% block content %}
-    <h1>Detalls del Recordatori</h1>
+    <h1>Detalls del Recordatori: {{ reminder.title }}</h1>
     <p>Descripció: {{ reminder.description }}</p>
     <p>Data y Hora del Recordatori: {{ reminder.reminder_date }}</p>
-    <p>Completat: {% if reminder.completed == 'No' %}No{% else %}Sí{% endif %}</p>
+    <p>Completat: {% if reminder.completed == False %}No{% else %}Sí{% endif %}</p>
     <a class="btn btn-primary" href="{% url 'edit_reminder' reminder.id %}">Editar</a>
     <a class="btn btn-danger" href="{% url 'delete_reminder' reminder.id %}">Eliminar</a>
 {% endblock %}

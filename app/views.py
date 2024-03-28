@@ -1,9 +1,8 @@
 from app.models import Note, Category, Reminder
-from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
 from app.forms import NoteForm, ReminderForm, CategoryForm
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from datetime import datetime
 
 
 def note_list(request):
@@ -59,8 +58,12 @@ def create_category(request):
 
 
 def reminder_list(request):
-    reminders = Reminder.objects.all()
-    return render(request, 'reminder_list.html', {'reminders': reminders})
+    now = datetime.now()
+    gt_reminders = Reminder.objects.filter(completed=False, reminder_date__gt=now)
+    lt_reminders = Reminder.objects.filter(completed=False, reminder_date__lt=now)
+    completed_reminders = Reminder.objects.filter(completed=True)
+
+    return render(request, 'reminder_list.html', {'gt_now_reminders': gt_reminders, 'lt_now_reminders': lt_reminders, 'completed_reminders': completed_reminders})
 
 
 def reminder_detail(request, reminder_id):

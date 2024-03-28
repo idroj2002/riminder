@@ -3,11 +3,11 @@
 {% block title %}Detalls de la Nota{% endblock %}
 
 {% block content %}
-    <h1>{{ note.title }}</h1>
+    <h1>Detalls de la nota: {{ note.title }}</h1>
     <p>{{ note.content }}</p>
     <p>Categories:
         {% for category in note.categories.all %}
-            {{ category.nombre }}{% if not forloop.last %}<p>,</p>{% endif %}
+            {{ category.name }}{% if not forloop.last %}<p>,</p>{% endif %}
         {% endfor %}
     </p>
     <a class="btn btn-primary" href="{% url 'edit_note' note.id %}">Editar</a>
