@@ -104,7 +104,8 @@ def base(request):
 
 def home(request):
     notes = Note.objects.all()
-    return render(request, 'home.html', {'notes': notes})
+    categories = Category.objects.all()
+    return render(request, 'home.html', {'notes': notes, 'categories': categories})
 
 def signup(request):
     if request.method == 'POST':

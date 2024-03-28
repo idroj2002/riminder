@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %} Home {% endblock %}
+{% block styles %} <link rel="stylesheet" href="../static/styles.css"> {% endblock %}
 
 {% block content %}
 <nav>
@@ -37,24 +38,26 @@
           <a type="button" class="btn btn-success" href="{% url 'create_note' %}">Crear nota</a>
             <h1>Llista de Notes</h1>
             <nav class="nav nav-tabs">
-              <a class="nav-link active" href="#">Totes les cateogires</a>
-              <a class="nav-link" href="#">Categoria 1</a>
-              <a class="nav-link" href="#">Categoria 2</a>
-              <a class="nav-link" href="#">Categoria sense elements</a>
+              <a class="nav-link active" id="main-category-button" href="#">Totes les cateogires</a>
+              {% for category in categories %}
+                <a class="nav-link category-button" href="#">{{ category.name }}</a>
+              {% endfor %}
             </nav>
             {% if notes %}
               <div class="container-fluid">
                 <div class="row">
                     {% for note in notes %}
-                    <div class="col-sm-6 col-md-4">
-                      <div class="card ml-2 mr-3 my-2" style="width: 18rem;">
-                        <div class="card-body">
-                          <h5 class="card-title">{{ note.title }}</h5>
-                          <p class="card-text">{{ note.description }}</p>
-                          <a href="{% url 'note_detail' note.id %}" class="btn btn-primary">Editar</a>
-                        </div>
-                      </div>
-                      </div>
+                          <div class="col-sm-6 col-md-4 note-card" data-categories={{ note.categories.all }}>
+                            <div class="card ml-2 mr-3 my-2" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ note.title }}</h5>
+                                
+                                <p class="card-subtitle">{% for categ in note.categories.all %}<span class="badge badge-primary mr-1">{{ categ }}</span>{% endfor %}</p>
+                                <p class="card-text">{{ note.description }}</p>
+                                <a href="{% url 'note_detail' note.id %}" class="btn btn-primary">Editar</a>
+                              </div>
+                            </div>
+                          </div>
                     {% endfor %}
                   </div>
               </div>
@@ -79,4 +82,8 @@
       </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+  <!--<script src="../static/home.js"></script>-->
 {% endblock %}
